@@ -15,10 +15,10 @@
  */
 
 var Engine = (function(global) {
-    /* Predefine the variables we'll be using within this scope,
-     * create the canvas element, grab the 2D context for that canvas
-     * set the canvas elements height/width and add it to the DOM.
-     */
+    // Predefine the variables we'll be using within this scope,
+    // * create the canvas element, grab the 2D context for that canvas
+    // * set the canvas elements height/width and add it to the DOM.
+
     var doc = global.document,
         win = global.window,
         canvas = doc.createElement('canvas'),
@@ -108,12 +108,12 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
-                'images/stone-block.png',   // Row 2 of 3 of stone
-                'images/stone-block.png',   // Row 3 of 3 of stone
-                'images/grass-block.png',   // Row 1 of 2 of grass
-                'images/grass-block.png'    // Row 2 of 2 of grass
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png', // Row 1 of 3 of stone
+                'images/stone-block.png', // Row 2 of 3 of stone
+                'images/stone-block.png', // Row 3 of 3 of stone
+                'images/grass-block.png', // Row 1 of 2 of grass
+                'images/grass-block.png' // Row 2 of 2 of grass
             ],
             numRows = 6,
             numCols = 5,
@@ -135,8 +135,21 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
-
-
+        // Draws score, highscore and number of lives on canvas
+        ctx.textBaseline = "center";
+        ctx.font = "24pt 'Exo 2'";
+        ctx.lineWidth = 1;
+        ctx.fillStyle = "white";
+        ctx.strokeStyle = "black";
+        ctx.textAlign = "end";
+        ctx.fillText("Score: " + player.score, 500, 90);
+        ctx.strokeText("Score: " + player.score, 500, 90);
+        ctx.textAlign = "end";
+        ctx.fillText("Lives: " + player.lives, 500, 575);
+        ctx.strokeText("Lives: " + player.lives, 500, 575);
+        ctx.textAlign = "start";
+        ctx.fillText("Highscore: " + player.highScore, 5, 575);
+        ctx.strokeText("Highscore: " + player.highScore, 5, 575);
         renderEntities();
     }
 
