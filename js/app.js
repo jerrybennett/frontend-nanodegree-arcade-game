@@ -1,3 +1,4 @@
+'use strict';
 // Enemies our player must avoid
 var Enemy = function() {
     // Variables applied to each of our instances go here,
@@ -75,7 +76,7 @@ Player.prototype.reset = function() {
 // and resets position. Used "MDN 2D collision detection" documentation
 // to help with this. (https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection)
 Player.prototype.update = function() {
-    for (var i = 0; i < allEnemies.length; i++) {
+    for (var i = 0, len = allEnemies.length; i < len; i++) {
         if (this.x < allEnemies[i].x + allEnemies[i].width && this.x + this.width > allEnemies[i].x && this.y < allEnemies[i].y + allEnemies[i].height && this.y + this.width > allEnemies[i].y) {
             // Decrements player lives on collision with enemy
             this.lives -= 1;
